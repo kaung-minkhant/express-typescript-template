@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  api:
+    image: polarkaung1999/express-typescript-template:latest
+    build:
+      context: .
+      target: production
+    ports:
+      - 8080:8080
+    env_file:
+      - path: ./.env
+        required: true
