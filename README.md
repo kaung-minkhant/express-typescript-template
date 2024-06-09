@@ -7,3 +7,7 @@ A Dockerfile is setup for use. It is multistage build and will excluded sensitiv
 the env file should include
 1. SERVICE_PORT
 2. SERVICE_NAME
+
+
+## Folder structure
+Path ->  Index => Middlewares => Controllers => Handlers => Services => Models => Database
