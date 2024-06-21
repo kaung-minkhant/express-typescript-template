@@ -1,6 +1,10 @@
 import express, {Express, Request, Response} from 'express'
 import * as dotenv from 'dotenv'
 import ip from 'ip'
+import bodyParser from 'body-parser'
+import cookieParser from 'cookie-parser'
+import { LoggerMiddleWare } from '@middlewares/logger';
+import { router } from '@controllers/index'
 
 dotenv.config();
 
@@ -11,6 +15,14 @@ const SERVICE_NAME = process.env.SERVICE_NAME || 'Example'
 app.get('/', (req: Request, res: Response)=> {
   res.status(200).send("OK")
 })
+
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(cookieParser())
+
+app.use(LoggerMiddleWare)
+
+app.use('/', router)
 
 const server = app.listen(PORT, () => {
   console.log(`${SERVICE_NAME} Service is running on ${ip.address()}:${PORT}`)
